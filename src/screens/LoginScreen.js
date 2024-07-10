@@ -25,7 +25,7 @@ function LoginScreen({ navigation }) {
       return;
     }
     console.log(data);
-    navigation.navigate('Home');
+    navigation.navigate('HomeTabs');
   };
 
   const refreshCaptcha = () => {
@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
     justifyContent: 'center',
+    marginTop: 40,
   },
   container: {
     flex: 1,

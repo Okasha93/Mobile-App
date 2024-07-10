@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { useNavigation } from "@react-navigation/native";
+import SitesScreen from './SitesScreen';
 
 const { width } = Dimensions.get('window');
 
@@ -19,9 +21,10 @@ const data = [
   { id: '12', name: 'Protected Area Name', location: 'Cairo' },
 ];
 
-function HomeScreen() {
+function AreasScreen() {
 
   const [likedItems, setLikedItems] = useState({});
+  const navigation = useNavigation();
 
   const toggleLike = (id) => {
     setLikedItems((prevLikedItems) => ({
@@ -41,16 +44,19 @@ function HomeScreen() {
           size={24}
         />
       </TouchableOpacity>
-      <Text style={styles.name}>{item.name}</Text>
-      <View style={styles.locationContainer}>
-        <Icon name='location-on' type='material' color='#fff' size={16} />
-        <Text style={styles.location}>{item.location}</Text>
-      </View>
+      <TouchableOpacity style={styles.site} onPress={() => navigation.navigate('Sites', { item })}>
+        <Text style={styles.name}>{item.name}</Text>
+        <View style={styles.locationContainer}>
+          <Icon name='location-on' type='material' color='#fff' size={16} />
+          <Text style={styles.location}>{item.location}</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 
   return (
     <View style={styles.container}>
+      {/* <Text style={styles.header}>Protected Areas</Text> */}
       <FlatList
         data={data}
         renderItem={renderItem}
@@ -61,6 +67,8 @@ function HomeScreen() {
     </View>
   );
 };
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -91,6 +99,10 @@ const styles = StyleSheet.create({
     top: 5,
     right: 5,
   },
+  site: {
+    textAlign: 'center',
+    alignItems: 'center',
+  },
   name: {
     color: '#fff',
     marginVertical: 10,
@@ -110,6 +122,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#222',
     padding: 15,
   },
+  header: {
+    textAlign: 'center',
+    fontSize: 25,
+    paddingTop: 10,
+    fontWeight: 'bold',
+  },
 });
 
-export default HomeScreen;
+export default AreasScreen;
