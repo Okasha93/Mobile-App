@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   },
   accText: {
     marginTop: 10,
-    color: 'black',
+    color: "#0070c4",
     paddingRight: 10,
   },
   centeredContainer: {

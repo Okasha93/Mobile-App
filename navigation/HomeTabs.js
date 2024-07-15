@@ -10,6 +10,7 @@ import Profile from '../src/screens/Profile';
 import ChangePassword from '../src/screens/ChangePassword';
 import MyCards from '../src/screens/MyCards';
 import AddCard from '../src/screens/AddCard';
+import Reservations from '../src/screens/Reservations';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -24,10 +25,13 @@ function HomeTabs() {
           if (route.name === 'Home') {
             iconName = 'home';
           } else if (route.name === 'Protected Areas') {
-            iconName = 'map';
+            iconName = 'location-on';
           } else if (route.name === 'My Profile') {
             iconName = 'person';
+          } else if (route.name === 'Reservations') {
+            iconName = 'map';
           }
+
 
           return <Icon name={iconName} type="material" color={color} size={50} />;
         },
@@ -52,6 +56,7 @@ function HomeTabs() {
       <Tab.Screen name="My Profile" component={ProfileStack} />
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Protected Areas" component={AreasStack} />
+      <Tab.Screen name="Reservations" component={Reservations} />
     </Tab.Navigator>
   );
 }
